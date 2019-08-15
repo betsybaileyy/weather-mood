@@ -3,11 +3,12 @@ const argv = require('yargs').argv;
 const express = require('express')
 const app = express()
 
+app.use(express.static('public'));
 app.set('view engine', 'ejs')
 
 
 let apiKey = '75e61380b673bbfebc3779698520ce1b';
-let city = argv.c || 'portland';
+let city = argv.c || 'san francisco';
 let url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${apiKey}`
 
 
@@ -24,9 +25,13 @@ request(url, function (err, response, body) {
 });
 
 app.get('/', function (req, res) {
-  res.send('Hello World!')
+  res.render('index');
 })
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!')
+})
+
+app.post('/', function (req, res) {
+  res.render('index');
 })
