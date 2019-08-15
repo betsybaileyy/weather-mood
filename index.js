@@ -3,6 +3,8 @@ const argv = require('yargs').argv;
 const express = require('express')
 const app = express()
 
+app.set('view engine', 'ejs')
+
 
 let apiKey = '75e61380b673bbfebc3779698520ce1b';
 let city = argv.c || 'portland';
